@@ -1,7 +1,13 @@
+import { Heading } from "@chakra-ui/react"
 
 function Menu() {
     return (
-        <div>Menu</div>
+        <>
+            <Heading mt={'123px'}>
+                Menu
+            </Heading>
+
+        </>
     )
 }
 

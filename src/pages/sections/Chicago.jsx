@@ -4,7 +4,7 @@ import Adrian from '../../assets/adrian.jpg'
 
 function Chicago() {
     return (
-        <Box minH='580px' color='brand.sec1' pt={{ base: '0', md: '100px' }}>
+        <Box id="about" minH='580px' color='brand.sec1' pt={{ base: '0', md: '100px' }}>
             <SimpleGrid maxW='860px' h="100%" columns={{ base: 1, md: 2 }} m='auto'>
                 <Stack align={{ base: 'center', md: 'flex-start' }} my={{ base: '6', md: '0' }}>
                     <Heading as='h1' size='2xl' color='brand.prim2'>Little Lemon</Heading>

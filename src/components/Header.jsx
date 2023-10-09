@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react"
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons"
 import { Image, Box, Flex, IconButton, useDisclosure, Collapse } from "@chakra-ui/react"
 import { DesktopNav, MobileNav } from "./Nav"
@@ -6,8 +7,52 @@ import Basket from '../assets/basket.svg'
 
 function Header() {
     const { isOpen, onToggle } = useDisclosure()
+    const headerRef = useRef(null)
+
+    console.log(headerRef)
+
+    useEffect(() => {
+        let prevScrollPos = window.scrollY;
+
+        const handleScroll = () => {
+            const currentScrollPos = window.scrollY;
+            const headerElement = headerRef.current;
+            console.log(headerElement)
+            //console.log(currentScrollPos)
+            if (!headerElement) {
+                return;
+            }
+            if (prevScrollPos > currentScrollPos) {
+                headerElement.style.transform = "translateY(0)";
+            } else {
+                headerElement.style.transform = "translateY(-200px)";
+            }
+            prevScrollPos = currentScrollPos;
+        }
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, []);
+
     return (
-        <Box color={'#495E57'}>
+        <Box
+            color={'#495E57'}
+            shadow={'md'}
+            top={0}
+            left={0}
+            right={0}
+            translateY={0}
+            transition="transform 0.3s"
+            position="fixed"
+            transitionProperty="transform"
+            transitionDuration=".3s"
+            transitionTimingFunction="ease-in-out"
+            backgroundColor="#ffffff"
+            zIndex={10000}
+            ref={headerRef}
+        >
             <header>
                 <Flex
                     maxW={'860px'}

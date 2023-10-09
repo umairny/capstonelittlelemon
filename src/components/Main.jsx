@@ -56,7 +56,12 @@ function Main() {
     }, [state.selectedDate]);//trigger when date selected
 
     return (
-        <Box minH='70vh' w='100vw' color="brand.sec1">
+        <Box
+            minH='70vh'
+            w='100vw'
+            color="brand.sec1"
+            mb='123px'
+        >
             <main>
                 <Routes>
                     <Route path="/" element={<Home />} />
