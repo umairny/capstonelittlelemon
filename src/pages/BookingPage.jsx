@@ -142,6 +142,7 @@ function BookingPage({ loading, state, dispatch }) {
                             formik.handleSubmit(e)
                             setSubLoading(true)
                         }}
+                        aria-label="Onclick submit"
                     >
                         {subLoading ? <Spinner /> : "Reserve the table"}
                     </Button>
