@@ -10,6 +10,7 @@ import Login from '../pages/Login'
 import OrderOnline from '../pages/OrderOnline'
 import PageNotFound from "../pages/PageNotFound"
 import Thankyou from "./forms/Thankyou"
+import Signup from "../pages/Signup"
 
 const initializeTimes = {
     availableTimes: [],
@@ -60,7 +61,7 @@ function Main() {
             minH='70vh'
             w='100vw'
             color="brand.sec1"
-            mb='123px'
+            mt={'123px'}
         >
             <main>
                 <Routes>
@@ -75,6 +76,7 @@ function Main() {
                             />
                         } />
                     <Route path="login" element={<Login />} />
+                    <Route path="signup" element={<Signup />} />
                     <Route path="order" element={<OrderOnline />} />
                     <Route path="thankyou" element={<Thankyou />} />
                     <Route path="*" element={<PageNotFound />} />

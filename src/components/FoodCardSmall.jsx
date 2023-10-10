@@ -1,5 +1,5 @@
-import { Card, CardBody, Image, Stack, Text, HStack, CardFooter } from "@chakra-ui/react"
-import scoter from '../assets/scoter.png'
+import { Card, CardBody, Image, Stack, Text } from "@chakra-ui/react"
+
 
 // eslint-disable-next-line react/prop-types
 function FoodCard({ title, description, imageSrc, price }) {

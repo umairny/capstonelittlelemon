@@ -8,7 +8,7 @@ const NavItem = [
     },
     {
         label: "About",
-        href: "#about",
+        href: "/#about",
     },
     {
         label: "Menu",
