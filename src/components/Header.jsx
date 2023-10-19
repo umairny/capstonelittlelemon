@@ -17,8 +17,6 @@ function Header() {
         const handleScroll = () => {
             const currentScrollPos = window.scrollY;
             const headerElement = headerRef.current;
-            console.log(headerElement)
-            //console.log(currentScrollPos)
             if (!headerElement) {
                 return;
             }

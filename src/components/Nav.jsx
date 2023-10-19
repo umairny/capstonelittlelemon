@@ -1,5 +1,5 @@
 import { Box, Stack } from "@chakra-ui/react"
-import { Link, Outlet } from "react-router-dom"
+import { Link, Outlet, useNavigate } from "react-router-dom"
 
 const NavItem = [
     {
@@ -8,7 +8,7 @@ const NavItem = [
     },
     {
         label: "About",
-        href: "/#about",
+        href: "about",
     },
     {
         label: "Menu",
@@ -28,18 +28,35 @@ const NavItem = [
     },
 ]
 
-
+function delay(ms) {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
+}
 
 export function DesktopNav() {
+    const navigate = useNavigate()
+
+    const handleClick = (anchor) => async () => {
+        navigate('/')
+        await delay(500);
+        const id = `${anchor}`;
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    };
+
     return (
         <Stack direction={'row'} spacing={8}>
             {NavItem.map((item, i) => (
                 item.label === "About" ?
-                    <a key={i + 10} href={item.href} >
-                        <Box _hover={{ color: '#F4CE14' }}>
-                            {item.label}
-                        </Box>
-                    </a>
+                    <Box _hover={{ color: '#F4CE14' }} key={i + 10} onClick={handleClick(item.href)} cursor={'pointer'}>
+                        {item.label}
+                    </Box>
                     :
                     <Link key={i} to={item.href} >
                         <Box _hover={{ color: '#F4CE14' }}>
@@ -55,6 +72,21 @@ export function DesktopNav() {
 
 // eslint-disable-next-line react/prop-types
 export function MobileNav({ toggle }) {
+    const navigate = useNavigate()
+
+    const handleClick = (anchor) => async () => {
+        navigate('/')
+        await delay(500);
+        const id = `${anchor}`;
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    };
+
     return (
         <Stack
             bg={'gray.100'}
@@ -68,13 +100,11 @@ export function MobileNav({ toggle }) {
         >
             {NavItem.map((item, i) => (
                 item.label === "About" ?
-                    <a key={i + 10} href={item.href} >
-                        <Box _hover={{ color: '#F4CE14' }}>
-                            {item.label}
-                        </Box>
-                    </a>
+                    <Box _hover={{ color: '#F4CE14' }} key={i + 10} as='a' onClick={handleClick(item.href)} cursor={'pointer'}>
+                        {item.label}
+                    </Box>
                     :
-                    <Link key={i} to={item.href} >
+                    <Link key={i} to={item.href} onClick={toggle}>
                         <Box _hover={{ color: '#F4CE14' }}>
                             {item.label}
                         </Box>
