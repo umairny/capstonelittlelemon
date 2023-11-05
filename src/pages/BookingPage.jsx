@@ -6,6 +6,8 @@ import {
     Heading,
     Button,
     Spinner,
+    Stack,
+    Image,
 } from '@chakra-ui/react'
 
 import { submitAPI } from '../Api/Api'
@@ -61,64 +63,24 @@ function BookingPage({ loading, state, dispatch }) {
         }),
     });
 
-
     return (
         <>
-            {step === 1 ?
-                <Box w='100vw' h='40vh'
-                    bgImage="url('/reservedate.jpeg')"
-                    bgPosition="bottom"
-                    bgRepeat="no-repeat"
-                    bgSize={{ base: 'cover', md: '860px' }}
-                    mb='7'
-                >
-                </Box>
-                :
-                step === 2 ?
-                    <Box w='100vw' h='40vh'
-                        bgImage="url('/reservecontact.jpeg')"
-                        bgPosition="bottom"
-                        bgRepeat="no-repeat"
-                        bgSize={{ base: 'cover', md: "860px" }}
-                        mb='7'
-                    ></Box>
-                    :
-                    <Box w='100vw' h='40vh'
-                        bgImage="url('/review.jpg')"
-                        bgPosition="bottom"
-                        bgRepeat="no-repeat"
-                        bgSize={{ base: 'cover', md: "contain" }}
-                        mb='7'
-                    ></Box>
-            }
-
             <Box
-                borderWidth="1px"
-                rounded="lg"
                 shadow="1px 1px 3px rgba(0,0,0,0.3)"
-                maxWidth={800}
-                p={6}
-                m="10px auto"
-                as="form">
-                <Progress hasStripe value={progress} mb="5%" mx="5%" isAnimated colorScheme='yellow'></Progress>
-                <Heading textAlign={'center'} mb="2%">
-                    Reservation Form
-                </Heading>
-
-                {step === 1 ?
-                    <BookingForm
-                        loading={loading}
-                        state={state}
-                        dispatch={dispatch}
-                        formik={formik}
-                        step={step}
-                        setStep={setStep}
-                        progress={progress}
-                        setProgress={setProgress}
-                    />
-                    :
-                    step === 2 ?
-                        <ContactForm
+                color='brand.sec2'
+                bgColor='brand.prim2'
+                mb={'3%'}
+            >
+                <Box maxW='860px' m='auto' p='6'>
+                    <Progress hasStripe value={progress} mb="2%" mx="5%" isAnimated colorScheme='orange'></Progress>
+                    <Heading textAlign={'center'} mb="2%">
+                        Book your table
+                    </Heading>
+                    {step === 1 ?
+                        <BookingForm
+                            loading={loading}
+                            state={state}
+                            dispatch={dispatch}
                             formik={formik}
                             step={step}
                             setStep={setStep}
@@ -126,30 +88,45 @@ function BookingPage({ loading, state, dispatch }) {
                             setProgress={setProgress}
                         />
                         :
-                        <ReviewForm
-                            formik={formik}
-                            step={step}
-                            setStep={setStep}
-                            progress={progress}
-                            setProgress={setProgress}
-                        />
-                }
-                {step === 3 && (
-                    <Button
-                        w="10rem"
-                        bg={'brand.prim1'}
-                        onClick={(e) => {
-                            formik.handleSubmit(e)
-                            setSubLoading(true)
-                        }}
-                        aria-label="Onclick submit"
-                    >
-                        {subLoading ? <Spinner /> : "Reserve the table"}
-                    </Button>
-                )
-                }
-
+                        step === 2 ?
+                            <ContactForm
+                                formik={formik}
+                                step={step}
+                                setStep={setStep}
+                                progress={progress}
+                                setProgress={setProgress}
+                            />
+                            :
+                            <ReviewForm
+                                formik={formik}
+                                step={step}
+                                setStep={setStep}
+                                progress={progress}
+                                setProgress={setProgress}
+                            />
+                    }
+                    {step === 3 && (
+                        <Button
+                            w="10rem"
+                            bg={'brand.prim1'}
+                            onClick={(e) => {
+                                formik.handleSubmit(e)
+                                setSubLoading(true)
+                            }}
+                            aria-label="Onclick submit"
+                        >
+                            {subLoading ? <Spinner /> : "Reserve the table"}
+                        </Button>
+                    )
+                    }
+                </Box>
             </Box >
+            <Stack maxW='860px' direction='row' justify='space-between' display={{ base: 'none', md: 'flex' }} m='auto'>
+                <Image maxW='30%' src="date.jpg" alt='table' />
+                <Image maxW='30%' src="contact.jpg" alt='table' />
+                <Image maxW='30%' src="booked.jpg" alt='table' />
+            </Stack>
+
         </>
     )
 }

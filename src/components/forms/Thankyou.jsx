@@ -5,16 +5,14 @@ import { Link } from 'react-router-dom'
 function Thankyou() {
     return (
         <>
-            <Box textAlign="center" color={'brand.sec4'}>
-                <Box w='100vw' h='40vh'
-                    bgImage="url('/reserved.jpg')"
-                    bgPosition="bottom"
-                    bgRepeat="no-repeat"
-                    bgSize={{ base: 'cover', md: '860px' }}
-                    mb='7'
-                >
-
-                </Box>
+            <Box textAlign="center" color={'brand.sec4'}
+                bgImage="url('/reserved.jpg')"
+                bgPosition="bottom"
+                bgRepeat="no-repeat"
+                bgSize={{ base: 'cover', md: '860px' }}
+                h={{ base: '80vh', md: '60vh' }}
+                pt='5%'
+            >
                 <Box maxW={'600px'} m={'auto'} p={4}>
                     <CheckCircleIcon boxSize={'50px'} color={'brand.prim1'} />
                     <Heading as="h2" size="xl" mt={6} mb={2} color={'brand.prim2'}>
@@ -36,7 +34,6 @@ function Thankyou() {
                     </Link>
                 </Box>
             </Box>
-
         </>
     )
 }

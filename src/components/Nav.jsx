@@ -54,7 +54,7 @@ export function DesktopNav() {
         <Stack direction={'row'} spacing={8}>
             {NavItem.map((item, i) => (
                 item.label === "About" ?
-                    <Box _hover={{ color: '#F4CE14' }} key={i + 10} onClick={handleClick(item.href)} cursor={'pointer'}>
+                    <Box _hover={{ color: '#F4CE14' }} key={i + 10} as="a" onClick={handleClick(item.href)} cursor={'pointer'}>
                         {item.label}
                     </Box>
                     :
@@ -76,6 +76,7 @@ export function MobileNav({ toggle }) {
 
     const handleClick = (anchor) => async () => {
         navigate('/')
+        toggle();
         await delay(500);
         const id = `${anchor}`;
         const element = document.getElementById(id);
@@ -85,6 +86,7 @@ export function MobileNav({ toggle }) {
                 block: "start",
             });
         }
+
     };
 
     return (
@@ -100,16 +102,18 @@ export function MobileNav({ toggle }) {
         >
             {NavItem.map((item, i) => (
                 item.label === "About" ?
-                    <Box _hover={{ color: '#F4CE14' }} key={i + 10} as='a' onClick={handleClick(item.href)} cursor={'pointer'}>
+                    <Box _hover={{ color: '#F4CE14' }} key={i + 10} as='a' cursor={'pointer'} m={'3'}
+                        onClick={handleClick(item.href)} >
                         {item.label}
                     </Box>
                     :
                     <Link key={i} to={item.href} onClick={toggle}>
-                        <Box _hover={{ color: '#F4CE14' }}>
+                        <Box _hover={{ color: '#F4CE14' }} m={'3'}>
                             {item.label}
                         </Box>
                     </Link>
-            ))}
+            ))
+            }
             <Outlet />
         </Stack >
     )
